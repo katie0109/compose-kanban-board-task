@@ -8,9 +8,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun TextExample() {
-    Text(text = "Jetpack Compose Text 실습",
+    Text(
+        text = "Jetpack Compose Text 실습",
         color = Color.Blue,
         fontSize = 22.sp,
-        fontWeight = Bold
-        )
+        fontWeight = Bold,
+    )
 }
