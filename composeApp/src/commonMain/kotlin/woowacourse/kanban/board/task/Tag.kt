@@ -7,13 +7,26 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+
+@Composable
+@Preview(showBackground = true)
+private fun TaskTagsPreview() {
+    MaterialTheme {
+        TaskTags(
+            tagNames = listOf("너무너무", "성능", "긴 태그", "최대로", "5자까지", "5개제한임"),
+        )
+    }
+}
 
 @Composable
 fun TaskTags(tagNames: List<String>) {
@@ -29,6 +42,7 @@ fun TaskTags(tagNames: List<String>) {
         }
     }
 }
+
 @Composable
 private fun TaskTag(tagName: String) {
     Button(
