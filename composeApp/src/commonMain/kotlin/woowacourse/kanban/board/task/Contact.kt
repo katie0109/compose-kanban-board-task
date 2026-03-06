@@ -1,14 +1,13 @@
 package woowacourse.kanban.board.task
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,44 +29,41 @@ fun TaskContact(contactName: String) {
             .height(60.dp)
             .drawBehind {
                 val strokeWidth = 1.dp.toPx()
-                val y = strokeWidth/2
+                val y = strokeWidth / 2
 
                 drawLine(
                     color = Color.LightGray,
                     start = Offset(0f, y),
                     end = Offset(size.width, y),
-                    strokeWidth = strokeWidth
+                    strokeWidth = strokeWidth,
                 )
             },
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         ContactProfile()
         ContactName(contactName)
     }
 }
+
 @Composable
-fun ContactProfile() {
+private fun ContactProfile() {
     Icon(
         modifier = Modifier
-            .background(Color.Gray, shape = CircleShape)
-            .border(
-                shape = CircleShape,
-                width = 2.dp,
-                color = Color.Gray,
-            ),
-        imageVector = Icons.Default.AccountBox,
-        contentDescription = "아이콘",
-        tint = Color.White,
+            .background(Color.White, shape = CircleShape),
+        imageVector = Icons.Default.AccountCircle,
+        contentDescription = "계정프로필",
+        tint = Color.Gray
     )
 }
+
 @Composable
-fun ContactName(contactName: String) {
+private fun ContactName(contactName: String) {
     Text(
         text = contactName,
         fontFamily = FontFamily.SansSerif,
         maxLines = 1,
-        overflow = TextOverflow.Ellipsis
+        overflow = TextOverflow.Ellipsis,
 
-    )
+        )
 }
