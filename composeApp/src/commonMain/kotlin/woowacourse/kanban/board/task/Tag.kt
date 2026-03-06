@@ -30,9 +30,7 @@ private fun TaskTagsPreview() {
 
 @Composable
 fun TaskTags(tagNames: List<String>) {
-    val checkedTageNames = tagNames.map {
-        checkTageName(it)
-    }.subList(0, minOf(tagNames.size, 5))
+    val checkedTageNames = LimitTags(tagNames)
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -64,4 +62,7 @@ private fun TaskTag(tagName: String) {
 }
 
 private fun checkTageName(tagName: String): String = tagName.take(5)
+private fun LimitTags(tagNames: List<String>, maxCount: Int = 5): List<String> =
+    tagNames.map { checkTageName(it) }
+        .take(maxCount)
 
