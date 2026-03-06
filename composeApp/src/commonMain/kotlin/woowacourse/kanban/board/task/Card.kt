@@ -12,17 +12,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TaskCard(title:String = "", contents: String = "", tagNames: List<String> = mutableListOf(), contactName: String = ""){
+fun TaskCard(title: String, contents: String? = null, tagNames: List<String> = emptyList(), contactName: String) {
     Column(
         modifier = Modifier
-            .width(373.dp)
-            .border(2.dp, Color.LightGray,RoundedCornerShape(10.dp))
+            .width(286.dp)
+            .border(2.dp, Color.LightGray, RoundedCornerShape(10.dp))
             .padding(start = 22.5.dp, end = 22.5.dp, top = 22.5.dp, bottom = 22.5.dp),
-        verticalArrangement = Arrangement.spacedBy(18.5.dp)
-    ){
-        if(title != "")     TaskTitle(title)
-        if(contents !="")   TaskContents(contents)
-        if(tagNames.isNotEmpty())   TaskTags(tagNames)
-        if(contactName !="")    TaskContact(contactName)
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        TaskTitle(title)
+        if (contents != null) TaskContents(contents)
+        if (tagNames.isNotEmpty()) TaskTags(tagNames)
+        TaskContact(contactName)
     }
 }
