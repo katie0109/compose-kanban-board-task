@@ -15,26 +15,22 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
 @Composable
 fun TaskTags(tagNames: List<String>) {
     val checkedTageNames = tagNames.map {
         checkTageName(it)
     }.subList(0, minOf(tagNames.size, 5))
-
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         checkedTageNames.forEach {
             TaskTag(it)
-        }}
-
-
+        }
+    }
 }
-
 @Composable
-fun TaskTag(tagName: String) {
+private fun TaskTag(tagName: String) {
     Button(
         modifier = Modifier
             .height(32.dp),
@@ -42,21 +38,16 @@ fun TaskTag(tagName: String) {
         },
         shape = RoundedCornerShape(21.dp),
         colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray),
-        contentPadding = PaddingValues(vertical = 5.dp, horizontal = 10.dp)
-        ) {
+        contentPadding = PaddingValues(vertical = 5.dp, horizontal = 10.dp),
+    ) {
         Text(
             text = tagName,
             fontFamily = FontFamily.SansSerif,
             color = Color.Black,
-            fontSize = 16.sp
+            fontSize = 12.sp,
         )
     }
 }
-fun checkTageName(tagName: String): String {
-    if (tagName.length > 5) {
-        return tagName.substring(0,5)
-    }else{
-        return tagName
-    }
-}
+
+private fun checkTageName(tagName: String): String = tagName.take(5)
 
