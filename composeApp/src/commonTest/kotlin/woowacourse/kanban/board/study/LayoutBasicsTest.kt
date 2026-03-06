@@ -39,12 +39,14 @@ class LayoutBasicsTest {
         setContent {
             Text(
                 // 바꿔 보세요!
-                text = "안녕 난 컴포즈야~",
+                text = text,
                 color = Color.Blue,
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily.SansSerif
             )
+            onNodeWithText(text).assertExists()
+            onNodeWithText("안녕 난 컴포즈야~").assertExists()
         }
 
         // then
