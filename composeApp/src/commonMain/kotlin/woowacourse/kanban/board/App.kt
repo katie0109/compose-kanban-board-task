@@ -60,11 +60,16 @@ private class AppPreviewProvider : PreviewParameterProvider<List<Task>> {
 fun AppPreview(
     @PreviewParameter(AppPreviewProvider::class) tasks: List<Task>,
 ) {
-    App(tasks = tasks)
+    KanbanBoard(tasks = tasks)
 }
 
 @Composable
-fun App(tasks: List<Task>) {
+fun App() {
+    KanbanBoard(tasks = AppPreviewProvider().values.first())
+}
+
+@Composable
+private fun KanbanBoard(tasks: List<Task>) {
     MaterialTheme {
         Column(
             modifier = Modifier
