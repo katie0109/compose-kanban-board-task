@@ -1,40 +1,56 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+## 🚀 칸반 보드 태스크 - 컴포즈 기초
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+### 진행 방식
+- 미션은 과제 진행 요구 사항, 기능 요구 사항, 프로그래밍 요구 사항 세 가지로 구성되어 있다.
+- 세 개의 요구 사항을 만족하기 위해 노력한다. 특히 기능을 구현하기 전에 기능 목록을 만들고, 기능 단위로 커밋 하는 방식으로 진행한다.
+- 기능 요구 사항에 기재되지 않은 내용은 스스로 판단하여 구현한다.
 
-### Build and Run Android Application
+### 과제 진행 요구 사항
+- 미션은 칸반 보드 태스크 저장소를 포크하고 클론하는 것으로 시작한다.
+- 온라인 코드 리뷰 요청 1단계 문서를 참고하여 실습 환경을 구축한다.
+- 미션 시작 버튼을 클릭하여 미션을 시작한다.
+- 저장소에 GitHub 사용자 이름으로 브랜치가 생성되었는지 확인한다.
+- 저장소를 내 계정으로 포크한다.
+- 기능을 구현하기 전 README.md에 구현할 기능 목록을 정리해 추가한다.
+- Git의 커밋 단위는 앞 단계에서 README.md에 정리한 기능 목록 단위로 추가한다.
+- AngularJS Git Commit Message Conventions을 참고해 커밋 메시지를 작성한다.
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+### 🚀 2단계 - 칸반 보드 태스크(리팩터링)
 
-### Build and Run Desktop (JVM) Application
+### 기능 요구 사항
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+1. 비즈니스 로직 분리
+- Task 도메인 객체 구현
+- 제목이 비어있을 경우 생성 불가
+- 담당자가 비어있을 경우 생성 불가
+- 태그 개수 5개 초과 시 5개까지만 저장
+- 태그명 5자 초과 시 5자까지만 저장
 
----
+2. 단위 테스트
+- 제목이 비어있을 경우 생성 불가
+- 담당자가 비어있을 경우 생성 불가
+- 태그가 5개 초과인 경우 5개까지만 저장
+- 태그명이 5자 초과인 경우 5자까지만 저장
+- 모든 필드가 정상인 경우 생성 성공
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+3. UI 테스트
+- 모든 필드가 있는 카드 - 제목, 설명, 태그, 담당자 모두 노출
+- 내용이 없는 카드 - 내용 영역 미노출
+- 태그가 없는 카드 - 태그 영역 미노출
+- 태그가 6개인 카드 - 5개만 노출
+- 태그명이 6자인 카드 - 5자까지만 노출
+
+### 데스크톱 앱 실행 방법
+1. IDE (Android Studio / IntelliJ IDEA) 활용
+    1. IDE 우측 상단의 실행 구성(Run Configuration) 드롭다운 메뉴를 클릭한다.
+    2. desktopRun (또는 데스크톱 아이콘이 있는 항목)을 선택한다.
+    3. 재생(Run) 버튼(▶)을 누르거나 단축키(Ctrl + R 또는 Shift + F10)를 눌러 실행한다.
+2. Gradle 명령어 활용
+   - 터미널을 열고 프로젝트 루트 경로에서 아래의 Gradle 명령어를 직접 입력하여 실행할 수도 있다.
+```agsl
+./gradlew :composeApp:run
+```
+빌드가 완료되면 내 컴퓨터 화면 중앙에 독립된 데스크톱 창(Window)이 새로 뜨면서, commonMain에서 작성한 Compose UI가 아름답게 렌더링되는 것을 확인할 수 있다!
+
+### Preview
+- @Preview 어노테이션은 Android Studio에게 이 컴포저블의 미리보기가 필요하다고 알려준다. 함수를 수정하며 실시간으로 업데이트되는 미리보기를 확인할 수 있다.
