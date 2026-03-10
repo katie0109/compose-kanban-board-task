@@ -60,7 +60,7 @@ fun TaskCard(task: Task) {
     ) {
         TaskTitle(task.title)
         if (task.contents != null) TaskContents(task.contents)
-        if (task.tagNames.isNotEmpty()) TaskTags(task.tagNames)
+        if (task.tags.isNotEmpty()) TaskTags(task.tags.map { it.name })
         TaskContact(task.contactName)
     }
 }

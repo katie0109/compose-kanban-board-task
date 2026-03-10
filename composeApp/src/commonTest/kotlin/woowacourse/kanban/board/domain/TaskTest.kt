@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
+import woowacourse.kanban.board.domain.Tag
 
 class TaskTest {
 
@@ -58,7 +59,7 @@ class TaskTest {
             contents = null,
             contactName = "디이노",
         )
-        assertEquals(emptyList(), task.tagNames)
+        assertEquals(emptyList(), task.tags)
     }
 
     @Test
@@ -69,7 +70,7 @@ class TaskTest {
             tagNames = listOf("태그1", "태그2", "태그3", "태그4", "태그5", "태그6"),
             contactName = "디이노",
         )
-        assertEquals(Task.MAX_TAG_COUNT, task.tagNames.size)
+        assertEquals(Task.MAX_TAG_COUNT, task.tags.size)
     }
 
     @Test
@@ -80,8 +81,8 @@ class TaskTest {
             tagNames = listOf("태그는5자까지"),
             contactName = "홍길동",
         )
-        assertEquals(Task.MAX_TAG_LENGTH, task.tagNames[0].length)
-        assertEquals("태그는5자", task.tagNames[0])
+        assertEquals(Tag.MAX_LENGTH, task.tags[0].name.length)
+        assertEquals("태그는5자", task.tags[0].name)
     }
 }
 

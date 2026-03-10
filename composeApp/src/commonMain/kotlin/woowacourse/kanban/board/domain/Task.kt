@@ -6,7 +6,7 @@ class Task(
     tagNames: List<String> = emptyList(),
     val contactName: String,
 ) {
-    val tagNames: List<String> = tagNames.take(MAX_TAG_COUNT).map { it.take(MAX_TAG_LENGTH) }
+    val tags: List<Tag> = tagNames.take(MAX_TAG_COUNT).map { Tag.from(it) }
 
     init {
         require(title.isNotBlank()) { "제목은 비어 있을 수 없습니다." }
@@ -15,7 +15,5 @@ class Task(
 
     companion object {
         const val MAX_TAG_COUNT = 5
-        const val MAX_TAG_LENGTH = 5
     }
-
 }
